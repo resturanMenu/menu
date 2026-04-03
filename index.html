@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favila Foods & Drinks Menu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* MAIN WRAPPER */
+        .container {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* HEADER (FIXED PROPERLY) */
+        .header {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .section h2 {
+            color: #FFD700;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            opacity: 0.9;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.95rem;
+        }
+
+        .item span:first-child {
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .item span:last-child {
+            white-space: nowrap;
+        }
+
+        /* TABLET */
+        @media (min-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .item {
+                font-size: 1rem;
+            }
+        }
+
+        /* DESKTOP (STILL LOOK LIKE TABLET) */
+        @media (min-width: 900px) {
+            .container {
+                max-width: 650px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <img src="./images/headerimage.png" alt="">
+        </div>
+
+        <!-- WHISKEY & COGNAC -->
+        <div class="section">
+            <div class="image-container">
+                <img src="./images/cognac.png" alt="">
+            </div>
+            <h2>DRINKS - Whiskey & Cognac</h2>
+
+            <div class="item"><span>William luson</span><span>N30,000</span></div>
+            <div class="item"><span>Jameson Green</span><span>N40,000</span></div>
+            <div class="item"><span>Jameson Black</span><span>N60,000</span></div>
+            <div class="item"><span>Monkey shoulder</span><span>N70,000</span></div>
+            <div class="item"><span>Martel Vs</span><span>N85,000</span></div>
+            <div class="item"><span>Martel Blue Swift</span><span>N140,000</span></div>
+            <div class="item"><span>Hennessy VSOP</span><span>N150,000</span></div>
+            <div class="item"><span>Hennessy VS</span><span>N90,000</span></div>
+            <div class="item"><span>Glennifidich 21years</span><span>N500,000</span></div>
+            <div class="item"><span>American Honey</span><span>N40,000</span></div>
+        </div>
+
+        <!-- TEQUILA -->
+        <div class="section">
+            <h2>TEQUILA</h2>
+            <div class="item"><span>Azul</span><span>N700,000</span></div>
+            <div class="item"><span>Donjulio 1842</span><span>N700,000</span></div>
+            <div class="item"><span>Casamugos</span><span>N250,000</span></div>
+            <div class="item"><span>Olmeca</span><span>N50,000</span></div>
+            <div class="item"><span>Camino</span><span>N40,000</span></div>
+            <div class="item"><span>Tequila shots</span><span>N2,500</span></div>
+        </div>
+
+        <!-- WINES -->
+        <div class="section">
+            <h2>WINES</h2>
+            <div class="item"><span>Carlo Ross</span><span>N20,000</span></div>
+            <div class="item"><span>Agor</span><span>N15,000</span></div>
+        </div>
+
+        <!-- COCKTAIL -->
+        <div class="section">
+            <h2>COCKTAIL & MOCKTAILS</h2>
+            <div class="item"><span>Chapman</span><span>N7,000</span></div>
+            <div class="item"><span>Chapman alcohol</span><span>N10,000</span></div>
+            <div class="item"><span>Sex on beach</span><span>N10,000</span></div>
+            <div class="item"><span>Long island</span><span>N10,000</span></div>
+            <div class="item"><span>Classic margarita</span><span>N10,000</span></div>
+        </div>
+
+        <!-- CHAMPAGNE -->
+        <div class="section">
+            <h2>CHAMPAGNE</h2>
+            <div class="item"><span>Belaire</span><span>N90,000</span></div>
+            <div class="item"><span>Martini</span><span>N30,000</span></div>
+        </div>
+
+        <!-- BOTTLE DRINKS -->
+        <div class="section">
+            <h2>BOTTLE DRINKS</h2>
+            <div class="item"><span>Heniken</span><span>N2,500</span></div>
+            <div class="item"><span>Big stout</span><span>N2,500</span></div>
+            <div class="item"><span>Desperado</span><span>N2,000</span></div>
+            <div class="item"><span>Hero</span><span>N2,000</span></div>
+            <div class="item"><span>Tiger</span><span>N2,000</span></div>
+            <div class="item"><span>Budweiser</span><span>N2,500</span></div>
+        </div>
+
+        <!-- SHISHA -->
+        <div class="section">
+            <div class="image-container">
+                <img src="./images/shiha.png" alt="">
+            </div>
+            <h2>SHISHA</h2>
+            <div class="item"><span>ONG Mouth Shisha</span><span>N8,000</span></div>
+            <div class="item"><span>Extra Coal</span><span>N21,000</span></div>
+            <div class="item"><span>Special Shisha with extra toppings</span><span>N10,100</span></div>
+        </div>
+
+        <!-- FOOD -->
+        <div class="section">
+            <div class="image-container">
+                <img src="./images/sharwama.png" alt="">
+            </div>
+            <h2>FAVILA FOODS GRILLS</h2>
+            <div class="item"><span>Sharwama</span><span>N5,000</span></div>
+            <div class="item"><span>Shawarma extra large</span><span>N6,000</span></div>
+            <div class="item"><span>Cat-fish barbeque</span><span>N8,000</span></div>
+            <div class="item"><span>Catfish barbeque large</span><span>N10,000</span></div>
+            <div class="item"><span>Sauced dry fish with chips</span><span>N5,000</span></div>
+            <div class="item"><span>Full catfish peppersoup</span><span>N15,000</span></div>
+            <div class="item"><span>Goat meat peppersoup</span><span>N5,000</span></div>
+            <div class="item"><span>Isi-ewu small pot</span><span>N6,000</span></div>
+            <div class="item"><span>Isi-ewu big pot</span><span>N12,000</span></div>
+            <div class="item"><span>Chicken and chips</span><span>N8,000</span></div>
+            <div class="item"><span>Diced turkey</span><span>N8,000</span></div>
+        </div>
+
+        <!-- PET DRINKS -->
+        <div class="section">
+            <h2>PET DRINKS</h2>
+            <div class="item"><span>Coke</span><span>N1,000</span></div>
+            <div class="item"><span>Water</span><span>N500</span></div>
+            <div class="item"><span>Origin bitter</span><span>N2,000</span></div>
+            <div class="item"><span>Lacoco</span><span>N1,500</span></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
