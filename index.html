@@ -3,301 +3,603 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favila Foods & Drinks Menu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Henny+Penny&family=Lovers+Quarrel&family=Luckiest+Guy&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Favila Menu | Premium Lounge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-weight: bolder;
         }
 
         body {
-            background-color: rgb(224, 224, 224);
-            color: #000000;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            /* background-image: url(./images/gryffyn-m-O8pEyjTnI7U-unsplash.jpg); */
-            /* background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-blend-mode: overlay; */
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #cdca96 0%, #cfd0aa 100%);
+            overflow: hidden;
+            position: relative;
         }
 
-        /* MAIN WRAPPER */
-        .container {
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        /* HEADER (FIXED PROPERLY) */
-        .header {
-            width: 100%;
-            margin-bottom: 25px;
-            background-color: rgb(32, 4, 4);
+        /* Subtle paper texture overlay */
+        body::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
-            padding: 10px;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.03"><path d="M30 10 L190 10 M30 30 L190 30 M30 50 L190 50 M30 70 L190 70 M30 90 L190 90 M30 110 L190 110 M30 130 L190 130 M30 150 L190 150 M30 170 L190 170 M30 190 L190 190" stroke="white" stroke-width="1" fill="none"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* BOOK CONTAINER */
+        .book {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            height: 100vh;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* EACH PAGE - CARD STYLE */
+        .page {
+            min-width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+            padding: 20px 18px;
+            overflow-y: auto;
+            opacity: 0.6;
+            transform: scale(0.92);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: rgba(206, 213, 169, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* ACTIVE PAGE - POPS FORWARD */
+        .page.active {
+            opacity: 1;
+            transform: scale(1);
+            background: rgba(210, 210, 210, 0.95);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5), 5px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* HEADER */
+        .header {
+            background: #1f0a07;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .header img {
             width: 100%;
-            height: auto;
             display: block;
-            border-radius: 10px;
-            border: none;
         }
 
-        h1 {
+        /* RESPONSIVE HEADER TITLE */
+        .header-title {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Lovers Quarrel', cursive;
+            color: #f5e6d3;
             text-align: center;
-            color: #3b3201;
-            margin-bottom: 30px;
-            font-size: 2rem;
+            width: 90%;
+            font-size: clamp(2.9rem, 9vw, 5.5rem);
+            white-space: normal;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
         }
 
-        .section {
-            margin-bottom: 45px;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-        }
-
+        /* SECTION HEADINGS WITH ICONS */
         .section h2 {
-            color: #521607;
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+            margin: 20px 0 16px;
+            color: #3f2104;
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-left: 4px solid #d4a373;
+            padding-left: 15px;
         }
 
         .image-container {
-            width: 100%;
-            max-width: 280px;
+            width: 160px;
             margin: 0 auto 15px;
-            border-radius: 8px;
-            overflow: hidden;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .image-container img {
             width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            opacity: 0.9;
+            border-radius: 16px;
         }
 
+        /* MENU ITEMS - LARGER TOUCH TARGET */
         .item {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-            padding: 10px 0;
-            font-size: 0.95rem;
-            text-transform: capitalize;
+            align-items: center;
+            padding: 12px 8px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            margin: 2px 0;
         }
 
-        .item span {
-            text-transform: capitalize !important;
+        /* TAP FEEDBACK */
+        .item:active {
+            background: rgba(212, 163, 115, 0.15);
+            transform: scale(0.99);
         }
 
         .item span:first-child {
-            font-weight: bold;
-            text-transform: capitalize;
+            font-weight: 500;
+            color: #000000;
+            font-size: clamp(0.95rem, 4vw, 1.2rem);
         }
 
+        /* GOLDEN PRICES */
         .item span:last-child {
-            white-space: nowrap;
+            font-weight: 700;
+            color: #e6b17e;
+            font-size: clamp(1rem, 4.2vw, 1.3rem);
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 4px 10px;
+            border-radius: 30px;
         }
 
-        /* TABLET */
-        @media (min-width: 600px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .section h2 {
-                font-size: 1.5rem;
-            }
-
-            .item {
-                font-size: 1rem;
-            }
+        /* PAGE DOTS INDICATOR */
+        .dots-container {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 8px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(8px);
         }
 
-        /* DESKTOP (STILL LOOK LIKE TABLET) */
-        @media (min-width: 900px) {
-            .container {
-                max-width: 650px;
-            }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.2s;
+        }
+
+        .dot.active-dot {
+            width: 24px;
+            border-radius: 10px;
+            background: #d4a373;
+        }
+
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 16px;
+            background: #d4a373;
+            color: #1f0a07;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            border: none;
+            font-family: monospace;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.92);
+        }
+
+        /* Scrollbar styling */
+        .book::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .book::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        .book::-webkit-scrollbar-thumb {
+            background: #d4a373;
+            border-radius: 10px;
+        }
+
+        /* Smooth scroll offset fix */
+        .page {
+            scroll-margin: 0;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-
-        <div class="header">
-            <img src="./images/headerimage.png" alt="">
-
-            <h1 style="position: absolute; z-index: 1001;
-        top: 130px; color: white; justify-self: center;
-        font-family:'Lovers Quarrel', cursive;
-        font-weight: 400;
-        font-style: normal; font-size: 3.5rem;">
-                Favelas Restolounge</h1>
-        </div>
-
-
-        <!-- WHISKEY & COGNAC -->
-        <div class="section" style="margin-top: 230px;">
-            <div class="image-container">
-                <img src="./images/cognac.png" alt="">
+    <div class="book" id="book">
+        <!-- PAGE 1: WHISKEY & COGNAC -->
+        <div class="page">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
             </div>
-            <h2>WHISKEY & COGNAC</h2>
-
-            <div class="item"><span>William Lawson</span><span>N30,000</span></div>
-            <div class="item"><span>American Honey</span><span>N40,000</span></div>
-            <div class="item"><span>Jameson Green</span><span>N40,000</span></div>
-            <div class="item"><span>Jameson Black</span><span>N60,000</span></div>
-            <div class="item"><span>Monkey Shoulder</span><span>N70,000</span></div>
-            <div class="item"><span>Martel Vs</span><span>N85,000</span></div>
-            <div class="item"><span>Martel Blue Swift</span><span>N140,000</span></div>
-            <div class="item"><span>Hennessy V.S.O.P</span><span>N150,000</span></div>
-            <div class="item"><span>Hennessy VS</span><span>N90,000</span></div>
-            <div class="item"><span>Glenfiddich 21years</span><span>N500,000</span></div>
-            <div class="item"><span>Glenfiddich 18years</span><span>N200,000</span></div>
-        </div>
-        <!-- CHAMPAGNE -->
-        <div class="section">
-            <h2>CHAMPAGNE</h2>
-            <div class="item"><span>Martini</span><span>N30,000</span></div>
-            <div class="item"><span>Belaire Rose</span><span>N90,000</span></div>
-            <div class="item"><span>Veuve Clicquot</span><span>N30,000</span></div>
-
-        </div>
-
-        <!-- TEQUILA -->
-        <div class="section">
-            <h2>TEQUILA</h2>
-            <div class="item"><span>Tequila shots</span><span>N2,500</span></div>
-            <div class="item"><span>Camino</span><span>N40,000</span></div>
-            <div class="item"><span>Olmeca</span><span>N50,000</span></div>
-            <div class="item"><span>Casamigos</span><span>N250,000</span></div>
-            <div class="item"><span>Don Julio 1842</span><span>N700,000</span></div>
-            <div class="item"><span>Don Julio (Reposada)</span><span>N300,000</span></div>
-            <div class="item"><span>Azul</span><span>N700,000</span></div>
-        </div>
-
-        <!-- WINES -->
-        <div class="section">
-            <h2>WINES</h2>
-            <div class="item"><span>Four Cousin</span><span>N15,000</span></div>
-            <div class="item"><span>Carlo Rossi</span><span>N20,000</span></div>
-            <div class="item"><span>Agor</span><span>N20,000</span></div>
-
-        </div>
-
-        <!--can drinks-->
-        <div class="section">
-            <h2>CAN DRINKS</h2>
-            <div class="item"><span>Heineken</span><span>N1,500</span></div>
-            <div class="item"><span>Small Stout</span><span>N2,000</span></div>
-            <div class="item"><span>Desperado</span><span>N2,000</span></div>
-            <div class="item"><span>Hero</span><span>N1,500</span></div>
-            <div class="item"><span>Fayrouz</span><span>N1,500</span></div>
-            <div class="item"><span>Smirnoff ice Vodka</span><span>N2,500</span></div>
-            <div class="item"><span>Black Bullet</span><span>N3,000</span></div>
-            <div class="item"><span>Blue Bullet</span><span>N2,000</span></div>
-            <div class="item"><span>Monster</span><span>N2,000</span></div>
-            <div class="item"><span>Red Horse</span><span>N2,000</span></div>
-            <div class="item"><span>Malta Guiness</span><span>N1,000</span></div>
-        </div>
-
-        <!-- PET DRINKS -->
-        <div class="section">
-            <h2>PET DRINKS</h2>
-            <div class="item"><span>Coke</span><span>N1,000</span></div>
-            <div class="item"><span>Origin Bitters</span><span>N2,000</span></div>
-            <div class="item"><span>Lacoco</span><span>N1,500</span></div>
-            <div class="item"><span>Campari</span><span>N1,000</span></div>
-            <div class="item"><span>Gordons</span><span>N3,000</span></div>
-            <div class="item"><span>Magic Moment</span><span>N4,000</span></div>
-        </div>
-        <!-- BOTTLE DRINKS -->
-        <div class="section">
-            <h2>BOTTLE DRINKS</h2>
-            <div class="item"><span>Heniken</span><span>N2,500</span></div>
-            <div class="item"><span>Big stout</span><span>N2,500</span></div>
-            <div class="item"><span>Desperado</span><span>N2,000</span></div>
-            <div class="item"><span>Hero</span><span>N2,000</span></div>
-            <div class="item"><span>Tiger</span><span>N2,000</span></div>
-            <div class="item"><span>Budweiser</span><span>N2,500</span></div>
-        </div>
-        <!-- COCKTAIL -->
-        <div class="section">
-            <h2>COCKTAIL & MOCKTAILS & MILKSHAKES</h2>
-            <div class="item"><span>Chapman</span><span>N7,000</span></div>
-            <div class="item"><span>Chapman Alcohol</span><span>N10,000</span></div>
-            <div class="item"><span>Sex on Beach</span><span>N10,000</span></div>
-            <div class="item"><span>Long Island</span><span>N10,000</span></div>
-            <div class="item"><span>Classic Margarita</span><span>N10,000</span></div>
-            <div class="item"><span>Vanilla Milkshake</span><span>N7,000</span></div>
-            <div class="item"><span>Chocolate Milkshake</span><span>N7,000</span></div>
-            <div class="item"><span>Favela Special</span><span>N10,000</span></div>
-        </div>
-
-        <!--JUICE-->
-        <div class="section">
-            <h2>JUICE</h2>
-            <div class="item"><span>Hollandia</span><span>N4,000</span></div>
-            <div class="item"><span>Chivita Active</span><span>N4,000</span></div>
-            <div class="item"><span>Exotic</span><span>N4,000</span></div>
-            <div class="item"><span>Vsmart</span><span>N4,000</span></div>
-        </div>
-
-        <!-- SHISHA -->
-        <div class="section">
-            <div class="image-container">
-                <img src="./images/shiha.png" alt="">
+            <div class="section">
+                <div class="image-container"><img src="./images/cognac.png" alt="cognac"></div>
+                <h2>🥃 WHISKEY & COGNAC</h2>
+                <div class="item"><span>William Lawson</span><span>₦30,000</span></div>
+                <div class="item"><span>American Honey</span><span>₦40,000</span></div>
+                <div class="item"><span>Jameson Green</span><span>₦40,000</span></div>
+                <div class="item"><span>Jameson Black</span><span>₦60,000</span></div>
+                <div class="item"><span>Monkey Shoulder</span><span>₦70,000</span></div>
+                <div class="item"><span>Martel Vs</span><span>₦85,000</span></div>
+                <div class="item"><span>Martel Blue Swift</span><span>₦140,000</span></div>
+                <div class="item"><span>Hennessy V.S.O.P</span><span>₦150,000</span></div>
+                <div class="item"><span>Hennessy VS</span><span>₦90,000</span></div>
+                <div class="item"><span>Glenfiddich 21years</span><span>₦500,000</span></div>
+                <div class="item"><span>Glenfiddich 18years</span><span>₦200,000</span></div>
             </div>
-            <h2>SHISHA</h2>
-            <div class="item"><span>One Mouth Shisha</span><span>N8,000</span></div>
-            <div class="item"><span>Double Mouth Shisha</span><span>N10,000</span></div>
-            <div class="item"><span>Extra Coal</span><span>N2,000</span></div>
-            <div class="item"><span>Special Shisha with extra toppings</span><span>N10,100</span></div>
         </div>
 
-        <!-- FOOD -->
-        <div class="section">
-            <div class="image-container">
-                <img src="./images/sharwama.png" alt="">
+        <!-- PAGE 2: CHAMPAGNE -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
             </div>
-            <h2>FAVILA FOODS GRILLS</h2>
-            <div class="item"><span>Sharwama</span><span>N5,000</span></div>
-            <div class="item"><span>Shawarma extra large</span><span>N6,000</span></div>
-            <div class="item"><span>Barbeque Cat-fish </span><span>N8,000</span></div>
-            <div class="item"><span>Barbeque Cat-fish (large)</span><span>N10,000</span></div>
-            <div class="item"><span>Sauced dry fish & chips</span><span>N5,000</span></div>
-            <div class="item"><span>Sauced Snail</span><span>N5,000</span></div>
-            <div class="item"><span>Full Catfish Peppersoup</span><span>N15,000</span></div>
-            <div class="item"><span>Goat Meat peppersoup</span><span>N5,000</span></div>
-            <div class="item"><span>Isi-Ewu small Pot</span><span>N6,000</span></div>
-            <div class="item"><span>Isi-Ewu big Pot</span><span>N12,000</span></div>
-            <div class="item"><span>Chicken and Chips</span><span>N8,000</span></div>
-            <div class="item"><span>Diced Turkey</span><span>N8,000</span></div>
+            <div class="section">
+                <h2>🍾 CHAMPAGNE</h2>
+                <div class="item"><span>Martini</span><span>₦30,000</span></div>
+                <div class="item"><span>Belaire Rose</span><span>₦90,000</span></div>
+                <div class="item"><span>Veuve Clicquot</span><span>₦30,000</span></div>
+            </div>
         </div>
 
+        <!-- PAGE 3: TEQUILA -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🌵 TEQUILA</h2>
+                <div class="item"><span>Tequila shots</span><span>₦2,500</span></div>
+                <div class="item"><span>Camino</span><span>₦40,000</span></div>
+                <div class="item"><span>Olmeca</span><span>₦50,000</span></div>
+                <div class="item"><span>Casamigos</span><span>₦250,000</span></div>
+                <div class="item"><span>Don Julio 1842</span><span>₦700,000</span></div>
+                <div class="item"><span>Don Julio (Reposada)</span><span>₦300,000</span></div>
+                <div class="item"><span>Azul</span><span>₦700,000</span></div>
+            </div>
+        </div>
 
+        <!-- PAGE 4: WINES -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🍷 WINES</h2>
+                <div class="item"><span>Four Cousin</span><span>₦15,000</span></div>
+                <div class="item"><span>Carlo Rossi</span><span>₦20,000</span></div>
+                <div class="item"><span>Agor</span><span>₦20,000</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 5: CAN DRINKS -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🥫 CAN DRINKS</h2>
+                <div class="item"><span>Heineken</span><span>₦1,500</span></div>
+                <div class="item"><span>Small Stout</span><span>₦2,000</span></div>
+                <div class="item"><span>Desperado</span><span>₦2,000</span></div>
+                <div class="item"><span>Hero</span><span>₦1,500</span></div>
+                <div class="item"><span>Fayrouz</span><span>₦1,500</span></div>
+                <div class="item"><span>Smirnoff Ice</span><span>₦2,500</span></div>
+                <div class="item"><span>Black Bullet</span><span>₦3,000</span></div>
+                <div class="item"><span>Blue Bullet</span><span>₦2,000</span></div>
+                <div class="item"><span>Monster</span><span>₦2,000</span></div>
+                <div class="item"><span>Red Horse</span><span>₦2,000</span></div>
+                <div class="item"><span>Malta Guinness</span><span>₦1,000</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 6: PET DRINKS -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🧃 PET DRINKS</h2>
+                <div class="item"><span>Coke</span><span>₦1,000</span></div>
+                <div class="item"><span>Origin Bitters</span><span>₦2,000</span></div>
+                <div class="item"><span>Lacoco</span><span>₦1,500</span></div>
+                <div class="item"><span>Campari</span><span>₦1,000</span></div>
+                <div class="item"><span>Gordons</span><span>₦3,000</span></div>
+                <div class="item"><span>Magic Moment</span><span>₦4,000</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 7: BOTTLE DRINKS -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🍾 BOTTLE DRINKS</h2>
+                <div class="item"><span>Heniken</span><span>₦2,500</span></div>
+                <div class="item"><span>Big stout</span><span>₦2,500</span></div>
+                <div class="item"><span>Desperado</span><span>₦2,000</span></div>
+                <div class="item"><span>Hero</span><span>₦2,000</span></div>
+                <div class="item"><span>Tiger</span><span>₦2,000</span></div>
+                <div class="item"><span>Budweiser</span><span>₦2,500</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 8: COCKTAIL & MOCKTAILS -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🍹 COCKTAIL & MOCKTAILS & MILKSHAKES</h2>
+                <div class="item"><span>Chapman</span><span>₦7,000</span></div>
+                <div class="item"><span>Chapman Alcohol</span><span>₦10,000</span></div>
+                <div class="item"><span>Sex on Beach</span><span>₦10,000</span></div>
+                <div class="item"><span>Long Island</span><span>₦10,000</span></div>
+                <div class="item"><span>Classic Margarita</span><span>₦10,000</span></div>
+                <div class="item"><span>Vanilla Milkshake</span><span>₦7,000</span></div>
+                <div class="item"><span>Chocolate Milkshake</span><span>₦7,000</span></div>
+                <div class="item"><span>Favela Special</span><span>₦10,000</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 9: JUICE -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <h2>🥤 JUICE</h2>
+                <div class="item"><span>Hollandia</span><span>₦4,000</span></div>
+                <div class="item"><span>Chivita Active</span><span>₦4,000</span></div>
+                <div class="item"><span>Exotic</span><span>₦4,000</span></div>
+                <div class="item"><span>Vsmart</span><span>₦4,000</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 10: SHISHA -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <div class="image-container"><img src="./images/shiha.png" alt="shisha"></div>
+                <h2>💨 SHISHA</h2>
+                <div class="item"><span>One Mouth Shisha</span><span>₦8,000</span></div>
+                <div class="item"><span>Double Mouth Shisha</span><span>₦10,000</span></div>
+                <div class="item"><span>Extra Coal</span><span>₦2,000</span></div>
+                <div class="item"><span>Special Shisha with extra toppings</span><span>₦10,100</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE 11: FOOD / GRILLS -->
+        <div class="page">
+            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+                <div class="header-title">Favelas Restolounge</div>
+            </div>
+            <div class="section">
+                <div class="image-container"><img src="./images/sharwama.png" alt="shawarma"></div>
+                <h2>🍗 FAVILA FOODS GRILLS</h2>
+                <div class="item"><span>Sharwama</span><span>₦5,000</span></div>
+                <div class="item"><span>Shawarma extra large</span><span>₦6,000</span></div>
+                <div class="item"><span>Barbeque Cat-fish</span><span>₦8,000</span></div>
+                <div class="item"><span>Barbeque Cat-fish (large)</span><span>₦10,000</span></div>
+                <div class="item"><span>Sauced dry fish & chips</span><span>₦5,000</span></div>
+                <div class="item"><span>Sauced Snail</span><span>₦5,000</span></div>
+                <div class="item"><span>Full Catfish Peppersoup</span><span>₦15,000</span></div>
+                <div class="item"><span>Goat Meat peppersoup</span><span>₦5,000</span></div>
+                <div class="item"><span>Isi-Ewu small Pot</span><span>₦6,000</span></div>
+                <div class="item"><span>Isi-Ewu big Pot</span><span>₦12,000</span></div>
+                <div class="item"><span>Chicken and Chips</span><span>₦8,000</span></div>
+                <div class="item"><span>Diced Turkey</span><span>₦8,000</span></div>
+            </div>
+        </div>
     </div>
 
+    <!-- DOTS INDICATOR -->
+    <div class="dots-container" id="dotsContainer"></div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTopBtn">↑</button>
+
+    <script>
+        (function () {
+            const book = document.getElementById('book');
+            const pages = document.querySelectorAll('.page');
+            const dotsContainer = document.getElementById('dotsContainer');
+            const backBtn = document.getElementById('backToTopBtn');
+
+            // --- CREATE DOTS (one per page) ---
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < pages.length; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.dataset.index = i;
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            createDots();
+            const dots = document.querySelectorAll('.dot');
+
+            // --- UPDATE ACTIVE PAGE + DOTS + BACK TO TOP VISIBILITY ---
+            function updateActivePageAndDots() {
+                const scrollLeft = book.scrollLeft;
+                const viewportCenter = scrollLeft + window.innerWidth / 2;
+
+                let activeIndex = 0;
+                let minDistance = Infinity;
+
+                pages.forEach((page, idx) => {
+                    const pageCenter = page.offsetLeft + page.offsetWidth / 2;
+                    const distance = Math.abs(viewportCenter - pageCenter);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeIndex = idx;
+                    }
+                });
+
+                // Update active class on pages
+                pages.forEach((page, idx) => {
+                    if (idx === activeIndex) {
+                        page.classList.add('active');
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+
+                // Update dots
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.classList.add('active-dot');
+                    } else {
+                        dot.classList.remove('active-dot');
+                    }
+                });
+
+                // Show/hide back to top button based on current page scroll
+                const activePage = pages[activeIndex];
+                if (activePage.scrollTop > 200) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            }
+
+            // --- GENTLE SNAP AFTER SCROLL (iOS-like) ---
+            let scrollTimeout;
+            function snapToNearestPage() {
+                const scrollLeft = book.scrollLeft;
+                let nearestPage = null;
+                let minDiff = Infinity;
+
+                pages.forEach(page => {
+                    const pageLeft = page.offsetLeft;
+                    const diff = Math.abs(scrollLeft - pageLeft);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        nearestPage = page;
+                    }
+                });
+
+                if (nearestPage) {
+                    book.scrollTo({
+                        left: nearestPage.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            function handleScrollEnd() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    snapToNearestPage();
+                }, 120);
+            }
+
+            // --- BACK TO TOP FUNCTIONALITY (per active page) ---
+            function attachBackToTop() {
+                backBtn.addEventListener('click', () => {
+                    // Find currently active page
+                    let activePage = null;
+                    pages.forEach(page => {
+                        if (page.classList.contains('active')) activePage = page;
+                    });
+                    if (activePage) {
+                        activePage.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // Monitor scroll on each page to show/hide back to top button
+            function monitorPageScrolls() {
+                pages.forEach(page => {
+                    page.addEventListener('scroll', () => {
+                        const activePage = document.querySelector('.page.active');
+                        if (activePage === page) {
+                            if (page.scrollTop > 200) {
+                                backBtn.classList.add('show');
+                            } else {
+                                backBtn.classList.remove('show');
+                            }
+                        }
+                    });
+                });
+            }
+
+            // --- EVENT LISTENERS ---
+            book.addEventListener('scroll', () => {
+                updateActivePageAndDots();
+                handleScrollEnd();
+            });
+
+            window.addEventListener('resize', () => {
+                updateActivePageAndDots();
+            });
+
+            // Initial calls
+            updateActivePageAndDots();
+            attachBackToTop();
+            monitorPageScrolls();
+
+            // Optional: click on dot to go to page
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    const targetPage = pages[idx];
+                    book.scrollTo({
+                        left: targetPage.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Small delay to ensure proper dot highlighting after snap
+            setTimeout(updateActivePageAndDots, 100);
+        })();
+    </script>
 </body>
 
 </html>
