@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Favila Menu | Premium Lounge</title>
+    <title>Favila Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap" rel="stylesheet">
@@ -17,23 +17,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #cdca96 0%, #cfd0aa 100%);
+            background: #e0e0e0;
             overflow: hidden;
             position: relative;
-        }
-
-        /* Subtle paper texture overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.03"><path d="M30 10 L190 10 M30 30 L190 30 M30 50 L190 50 M30 70 L190 70 M30 90 L190 90 M30 110 L190 110 M30 130 L190 130 M30 150 L190 150 M30 170 L190 170 M30 190 L190 190" stroke="white" stroke-width="1" fill="none"/></svg>');
-            background-repeat: repeat;
-            pointer-events: none;
-            z-index: 0;
         }
 
         /* BOOK CONTAINER */
@@ -48,39 +34,32 @@
             z-index: 1;
         }
 
-        /* EACH PAGE - CARD STYLE */
+        /* EACH PAGE */
         .page {
             min-width: 100%;
             height: 100vh;
             scroll-snap-align: start;
             padding: 20px 18px;
+            padding-bottom: 260px;
+            /* 200px+ extra bottom space */
             overflow-y: auto;
-            opacity: 0.6;
-            transform: scale(0.92);
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            background: rgba(206, 213, 169, 0.85);
-            backdrop-filter: blur(2px);
-            border-radius: 0;
-            box-shadow: none;
+            background: #e0e0e0;
+            transition: opacity 0.3s ease;
         }
 
-        /* ACTIVE PAGE - POPS FORWARD */
+        /* ACTIVE PAGE - just slight visual cue, no scaling shake */
         .page.active {
             opacity: 1;
-            transform: scale(1);
-            background: rgba(210, 210, 210, 0.95);
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5), 5px 0 30px rgba(0, 0, 0, 0.3);
         }
 
         /* HEADER */
         .header {
-            background: #1f0a07;
-            border-radius: 24px;
+            background: #200404;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .header img {
@@ -88,78 +67,66 @@
             display: block;
         }
 
-        /* RESPONSIVE HEADER TITLE */
+        /* RESPONSIVE HEADER TITLE - FIXED FOR TABLETS */
         .header-title {
             position: absolute;
             top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Lovers Quarrel', cursive;
-            color: #f5e6d3;
+            color: white;
             text-align: center;
             width: 90%;
-            font-size: clamp(2.9rem, 9vw, 5.5rem);
+            font-size: clamp(2.9rem, 9vw, 5rem);
             white-space: normal;
-            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
         }
 
-        /* SECTION HEADINGS WITH ICONS */
+        /* SECTION HEADINGS */
         .section h2 {
             margin: 20px 0 16px;
-            color: #3f2104;
-            font-size: clamp(1.4rem, 5vw, 2rem);
+            color: #521607;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
             font-weight: 600;
-            letter-spacing: 1px;
-            border-left: 4px solid #d4a373;
+            border-left: 4px solid #521607;
             padding-left: 15px;
         }
 
         .image-container {
             width: 160px;
             margin: 0 auto 15px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .image-container img {
             width: 100%;
-            border-radius: 16px;
+            border-radius: 12px;
         }
 
-        /* MENU ITEMS - LARGER TOUCH TARGET */
+        /* MENU ITEMS */
         .item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 8px;
-            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border-radius: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #ccc;
+            border-radius: 8px;
             margin: 2px 0;
-        }
-
-        /* TAP FEEDBACK */
-        .item:active {
-            background: rgba(212, 163, 115, 0.15);
-            transform: scale(0.99);
         }
 
         .item span:first-child {
             font-weight: 500;
-            color: #000000;
-            font-size: clamp(0.95rem, 4vw, 1.2rem);
+            color: #1a1a1a;
+            font-size: clamp(0.95rem, 4vw, 1.15rem);
         }
 
-        /* GOLDEN PRICES */
         .item span:last-child {
-            font-weight: 700;
-            color: #e6b17e;
-            font-size: clamp(1rem, 4.2vw, 1.3rem);
-            letter-spacing: 0.5px;
-            background: rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            color: #521607;
+            font-size: clamp(1rem, 4.2vw, 1.2rem);
+            background: rgba(0, 0, 0, 0.05);
             padding: 4px 10px;
-            border-radius: 30px;
+            border-radius: 20px;
         }
 
         /* PAGE DOTS INDICATOR */
@@ -171,10 +138,10 @@
             display: flex;
             gap: 10px;
             z-index: 100;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.7);
             padding: 8px 16px;
             border-radius: 40px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
         }
 
         .dot {
@@ -182,13 +149,14 @@
             height: 8px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.4);
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .dot.active-dot {
             width: 24px;
             border-radius: 10px;
-            background: #d4a373;
+            background: #521607;
         }
 
         /* BACK TO TOP BUTTON */
@@ -196,8 +164,8 @@
             position: fixed;
             bottom: 80px;
             right: 16px;
-            background: #d4a373;
-            color: #1f0a07;
+            background: #521607;
+            color: white;
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -209,11 +177,10 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             z-index: 100;
             border: none;
-            font-family: monospace;
         }
 
         .back-to-top.show {
@@ -227,21 +194,16 @@
 
         /* Scrollbar styling */
         .book::-webkit-scrollbar {
-            height: 5px;
+            height: 4px;
         }
 
         .book::-webkit-scrollbar-track {
-            background: #2a2a2a;
+            background: #bbb;
         }
 
         .book::-webkit-scrollbar-thumb {
-            background: #d4a373;
-            border-radius: 10px;
-        }
-
-        /* Smooth scroll offset fix */
-        .page {
-            scroll-margin: 0;
+            background: #521607;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -257,7 +219,7 @@
             </div>
             <div class="section">
                 <div class="image-container"><img src="./images/cognac.png" alt="cognac"></div>
-                <h2>🥃 WHISKEY & COGNAC</h2>
+                <h2>WHISKEY & COGNAC</h2>
                 <div class="item"><span>William Lawson</span><span>₦30,000</span></div>
                 <div class="item"><span>American Honey</span><span>₦40,000</span></div>
                 <div class="item"><span>Jameson Green</span><span>₦40,000</span></div>
@@ -274,11 +236,12 @@
 
         <!-- PAGE 2: CHAMPAGNE -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🍾 CHAMPAGNE</h2>
+                <h2>CHAMPAGNE</h2>
                 <div class="item"><span>Martini</span><span>₦30,000</span></div>
                 <div class="item"><span>Belaire Rose</span><span>₦90,000</span></div>
                 <div class="item"><span>Veuve Clicquot</span><span>₦30,000</span></div>
@@ -287,11 +250,12 @@
 
         <!-- PAGE 3: TEQUILA -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🌵 TEQUILA</h2>
+                <h2>TEQUILA</h2>
                 <div class="item"><span>Tequila shots</span><span>₦2,500</span></div>
                 <div class="item"><span>Camino</span><span>₦40,000</span></div>
                 <div class="item"><span>Olmeca</span><span>₦50,000</span></div>
@@ -304,11 +268,12 @@
 
         <!-- PAGE 4: WINES -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🍷 WINES</h2>
+                <h2>WINES</h2>
                 <div class="item"><span>Four Cousin</span><span>₦15,000</span></div>
                 <div class="item"><span>Carlo Rossi</span><span>₦20,000</span></div>
                 <div class="item"><span>Agor</span><span>₦20,000</span></div>
@@ -317,11 +282,12 @@
 
         <!-- PAGE 5: CAN DRINKS -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🥫 CAN DRINKS</h2>
+                <h2>CAN DRINKS</h2>
                 <div class="item"><span>Heineken</span><span>₦1,500</span></div>
                 <div class="item"><span>Small Stout</span><span>₦2,000</span></div>
                 <div class="item"><span>Desperado</span><span>₦2,000</span></div>
@@ -338,11 +304,12 @@
 
         <!-- PAGE 6: PET DRINKS -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🧃 PET DRINKS</h2>
+                <h2>PET DRINKS</h2>
                 <div class="item"><span>Coke</span><span>₦1,000</span></div>
                 <div class="item"><span>Origin Bitters</span><span>₦2,000</span></div>
                 <div class="item"><span>Lacoco</span><span>₦1,500</span></div>
@@ -354,11 +321,12 @@
 
         <!-- PAGE 7: BOTTLE DRINKS -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🍾 BOTTLE DRINKS</h2>
+                <h2>BOTTLE DRINKS</h2>
                 <div class="item"><span>Heniken</span><span>₦2,500</span></div>
                 <div class="item"><span>Big stout</span><span>₦2,500</span></div>
                 <div class="item"><span>Desperado</span><span>₦2,000</span></div>
@@ -370,11 +338,12 @@
 
         <!-- PAGE 8: COCKTAIL & MOCKTAILS -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🍹 COCKTAIL & MOCKTAILS & MILKSHAKES</h2>
+                <h2>COCKTAIL & MOCKTAILS & MILKSHAKES</h2>
                 <div class="item"><span>Chapman</span><span>₦7,000</span></div>
                 <div class="item"><span>Chapman Alcohol</span><span>₦10,000</span></div>
                 <div class="item"><span>Sex on Beach</span><span>₦10,000</span></div>
@@ -388,11 +357,12 @@
 
         <!-- PAGE 9: JUICE -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
-                <h2>🥤 JUICE</h2>
+                <h2>JUICE</h2>
                 <div class="item"><span>Hollandia</span><span>₦4,000</span></div>
                 <div class="item"><span>Chivita Active</span><span>₦4,000</span></div>
                 <div class="item"><span>Exotic</span><span>₦4,000</span></div>
@@ -402,12 +372,13 @@
 
         <!-- PAGE 10: SHISHA -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
                 <div class="image-container"><img src="./images/shiha.png" alt="shisha"></div>
-                <h2>💨 SHISHA</h2>
+                <h2>SHISHA</h2>
                 <div class="item"><span>One Mouth Shisha</span><span>₦8,000</span></div>
                 <div class="item"><span>Double Mouth Shisha</span><span>₦10,000</span></div>
                 <div class="item"><span>Extra Coal</span><span>₦2,000</span></div>
@@ -417,12 +388,13 @@
 
         <!-- PAGE 11: FOOD / GRILLS -->
         <div class="page">
-            <div class="header"><img src="./images/headerimage.png" alt="Favila Lounge">
+            <div class="header">
+                <img src="./images/headerimage.png" alt="Favila Lounge">
                 <div class="header-title">Favelas Restolounge</div>
             </div>
             <div class="section">
                 <div class="image-container"><img src="./images/sharwama.png" alt="shawarma"></div>
-                <h2>🍗 FAVILA FOODS GRILLS</h2>
+                <h2>FAVILA FOODS GRILLS</h2>
                 <div class="item"><span>Sharwama</span><span>₦5,000</span></div>
                 <div class="item"><span>Shawarma extra large</span><span>₦6,000</span></div>
                 <div class="item"><span>Barbeque Cat-fish</span><span>₦8,000</span></div>
@@ -452,7 +424,7 @@
             const dotsContainer = document.getElementById('dotsContainer');
             const backBtn = document.getElementById('backToTopBtn');
 
-            // --- CREATE DOTS (one per page) ---
+            // Create dots
             function createDots() {
                 dotsContainer.innerHTML = '';
                 for (let i = 0; i < pages.length; i++) {
@@ -465,7 +437,7 @@
             createDots();
             const dots = document.querySelectorAll('.dot');
 
-            // --- UPDATE ACTIVE PAGE + DOTS + BACK TO TOP VISIBILITY ---
+            // Update active page and dots
             function updateActivePageAndDots() {
                 const scrollLeft = book.scrollLeft;
                 const viewportCenter = scrollLeft + window.innerWidth / 2;
@@ -482,7 +454,6 @@
                     }
                 });
 
-                // Update active class on pages
                 pages.forEach((page, idx) => {
                     if (idx === activeIndex) {
                         page.classList.add('active');
@@ -491,7 +462,6 @@
                     }
                 });
 
-                // Update dots
                 dots.forEach((dot, idx) => {
                     if (idx === activeIndex) {
                         dot.classList.add('active-dot');
@@ -500,7 +470,6 @@
                     }
                 });
 
-                // Show/hide back to top button based on current page scroll
                 const activePage = pages[activeIndex];
                 if (activePage.scrollTop > 200) {
                     backBtn.classList.add('show');
@@ -509,41 +478,12 @@
                 }
             }
 
-            // --- GENTLE SNAP AFTER SCROLL (iOS-like) ---
-            let scrollTimeout;
-            function snapToNearestPage() {
-                const scrollLeft = book.scrollLeft;
-                let nearestPage = null;
-                let minDiff = Infinity;
+            // NO automatic snap after scroll - just manual scroll-snap-type handles it cleanly
+            // This eliminates all shaking
 
-                pages.forEach(page => {
-                    const pageLeft = page.offsetLeft;
-                    const diff = Math.abs(scrollLeft - pageLeft);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        nearestPage = page;
-                    }
-                });
-
-                if (nearestPage) {
-                    book.scrollTo({
-                        left: nearestPage.offsetLeft,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            function handleScrollEnd() {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    snapToNearestPage();
-                }, 120);
-            }
-
-            // --- BACK TO TOP FUNCTIONALITY (per active page) ---
+            // Back to top
             function attachBackToTop() {
                 backBtn.addEventListener('click', () => {
-                    // Find currently active page
                     let activePage = null;
                     pages.forEach(page => {
                         if (page.classList.contains('active')) activePage = page;
@@ -554,7 +494,7 @@
                 });
             }
 
-            // Monitor scroll on each page to show/hide back to top button
+            // Monitor scroll on each page
             function monitorPageScrolls() {
                 pages.forEach(page => {
                     page.addEventListener('scroll', () => {
@@ -570,22 +510,16 @@
                 });
             }
 
-            // --- EVENT LISTENERS ---
-            book.addEventListener('scroll', () => {
-                updateActivePageAndDots();
-                handleScrollEnd();
-            });
-
-            window.addEventListener('resize', () => {
-                updateActivePageAndDots();
-            });
+            // Event listeners
+            book.addEventListener('scroll', updateActivePageAndDots);
+            window.addEventListener('resize', updateActivePageAndDots);
 
             // Initial calls
             updateActivePageAndDots();
             attachBackToTop();
             monitorPageScrolls();
 
-            // Optional: click on dot to go to page
+            // Click on dot to go to page
             dots.forEach((dot, idx) => {
                 dot.addEventListener('click', () => {
                     const targetPage = pages[idx];
@@ -595,9 +529,6 @@
                     });
                 });
             });
-
-            // Small delay to ensure proper dot highlighting after snap
-            setTimeout(updateActivePageAndDots, 100);
         })();
     </script>
 </body>
