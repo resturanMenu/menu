@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favila Foods & Drinks Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Henny+Penny&family=Lovers+Quarrel&family=Luckiest+Guy&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -37,6 +42,12 @@
         .header {
             width: 100%;
             margin-bottom: 25px;
+            background-color: rgb(32, 4, 4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 10px;
         }
 
         .header img {
@@ -134,12 +145,18 @@
 
         <div class="header">
             <img src="./images/headerimage.png" alt="">
+
+            <h1 style="position: absolute; z-index: 1001;
+        top: 130px; color: white; justify-self: center;
+        font-family:'Lovers Quarrel', cursive;
+        font-weight: 400;
+        font-style: normal; font-size: 3.5rem;">
+                Favelas Restolounge</h1>
         </div>
-        <h1>
-            Favelas Restolounge</h1>
+
 
         <!-- WHISKEY & COGNAC -->
-        <div class="section">
+        <div class="section" style="margin-top: 230px;">
             <div class="image-container">
                 <img src="./images/cognac.png" alt="">
             </div>
